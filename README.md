@@ -12,7 +12,7 @@ A static, dependency-free portfolio (HTML, CSS and vanilla JS) hosted on GitHub 
 
 ## Configuration
 - **Contact form:** set `web3formsKey` in the `CONTACT` object in `index.html` to a free [Web3Forms](https://web3forms.com) access key to deliver messages to your inbox. The key is designed to be public. Without a key, the form opens the visitor's email app with the message pre-filled.
-- **CV download:** add `Yasmeen-Gad-CV.pdf` to the repository root and set `cv: 'Yasmeen-Gad-CV.pdf'` in the `CONTACT` object. The "Download CV" button then appears.
+- **CV download:** add `Yasmeen-Gad-CV.pdf` to the repository root (already set via `cv` in the `CONTACT` object). Replace the file to update the CV.
 
 ## Run locally
 ```
