@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Yasmeen Gad · Flutter Developer</title>
+<meta name="description" content="Yasmeen Gad, Flutter developer building production apps for mobile, desktop and Android TV with Clean Architecture, Riverpod and BLoC.">
+<meta name="author" content="Yasmeen Gad">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="canonical" href="https://yasmeengad.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/photo.webp">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yasmeengad.github.io/">
+<meta property="og:title" content="Yasmeen Gad · Flutter Developer">
+<meta property="og:description" content="Yasmeen Gad, Flutter developer building production apps for mobile, desktop and Android TV with Clean Architecture, Riverpod and BLoC.">
+<meta property="og:image" content="https://yasmeengad.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Yasmeen Gad", "jobTitle": "Flutter Developer", "url": "https://yasmeengad.github.io/", "address": {"@type": "PostalAddress", "addressLocality": "Giza", "addressCountry": "EG"}, "sameAs": ["https://github.com/YasmeenGad", "https://www.linkedin.com/in/yasmin-gad-252316287"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one dark canvas with a faint drafting grid; numbered sections with serif titles and one gold accent. Deliberately dark-only. */
+:root{
+  --bg:#0b0b0c;--bg2:#111113;--card:#141416;--card2:#18181b;--line:#24242a;--line2:#2f2f36;
+  --ink:#f2efe9;--body:#b9b5ad;--dim:#85817a;--gold:#c9a864;--gold2:#e2c487;--ok:#5fcf8f;--err:#f08a7a;
+  --serif:"DM Serif Display",Georgia,serif;--sans:"DM Sans",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(120% 90% at 50% 0%,#000 30%,transparent 85%)}
+body::after{content:"";position:fixed;inset:-20% -10% auto auto;width:70vw;height:70vh;pointer-events:none;z-index:0;background:radial-gradient(closest-side,rgba(201,168,100,.07),transparent)}
+main,header,footer{position:relative;z-index:1}
+a{color:inherit}
+img{display:block;max-width:100%}
+button,input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.mono{font-family:var(--mono)}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+
+/* nav */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(11,11,12,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:20px;min-height:68px}
+.brand{text-decoration:none;display:grid;line-height:1.05;margin-right:auto}
+.brand b{font:400 21px var(--serif);letter-spacing:.005em}
+.brand span{font:500 10px var(--mono);letter-spacing:.22em;color:var(--gold);margin-top:4px}
+.links{display:flex;gap:4px;padding:5px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.015)}
+.links a{text-decoration:none;font:500 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);padding:8px 14px;border-radius:99px;transition:color .2s,background .2s}
+.links a:hover{color:var(--ink)}
+.links a.on{color:var(--ink);background:#232327;box-shadow:inset 0 0 0 1px var(--line2)}
+.socials{display:flex;gap:8px}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;background:var(--card);text-decoration:none;color:var(--body);transition:border-color .2s,color .2s;cursor:pointer}
+.icon-btn:hover{border-color:var(--gold);color:var(--gold2)}
+.icon-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.menu{display:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 22px;border-radius:6px;border:1px solid var(--line2);background:var(--card);text-decoration:none;font-weight:600;font-size:14.5px;cursor:pointer;transition:border-color .2s,background .2s,transform .15s;color:var(--ink)}
+.btn:hover{border-color:#4a4a52}
+.btn:active{transform:translateY(1px)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#1b1408}
+.btn.gold:hover{background:var(--gold2)}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);align-items:center;padding-block:clamp(48px,8vw,110px) clamp(40px,6vw,80px);min-height:min(820px,calc(100vh - 68px))}
+.hero h1{font:400 clamp(46px,6.6vw,92px)/.98 var(--serif);letter-spacing:-.015em;margin:22px 0 0;text-wrap:balance}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero p.lead{margin:24px 0 0;color:var(--body);font-size:clamp(16px,1.4vw,18px);max-width:50ch}
+.hero p.lead b{color:var(--ink);font-weight:600}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:42px;padding-top:24px;border-top:1px solid var(--line)}
+.facts div{display:grid;gap:2px}
+.facts b{font:400 30px/1 var(--serif);color:var(--ink)}
+.facts span{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.stage{position:relative;aspect-ratio:1/0.92;max-width:640px;justify-self:end;width:100%}
+.stage .browser{position:absolute;left:0;top:6%;width:88%;transform:perspective(1800px) rotateY(-10deg) rotateX(4deg);transform-origin:left center;opacity:.92}
+.stage .ph{position:absolute;bottom:0}
+.stage .ph.a{left:6%;width:25%;bottom:4%;transform:rotate(-6deg)}
+.stage .ph.b{left:36%;width:29%;z-index:2}
+.stage .ph.c{right:2%;width:25%;bottom:6%;transform:rotate(6deg)}
+.stage::after{content:"";position:absolute;left:10%;right:10%;bottom:-4%;height:16%;background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);z-index:-1}
+.portrait{position:absolute;left:15%;right:29%;top:0;bottom:4%;border-radius:200px 200px 16px 16px;overflow:hidden;box-shadow:0 0 0 1px rgba(201,168,100,.35),0 40px 80px -30px rgba(0,0,0,.9);background:#111}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:52% 30%}
+.portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(11,11,12,.55))}
+.stage .ph .scr{aspect-ratio:9/19.5;background:#fff}
+.stage .ph .scr img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.stage .ph.pa{position:absolute;left:0;bottom:0;width:20%;transform:rotate(-7deg);z-index:2}
+.stage .pb-desk{position:absolute;right:-3%;bottom:20%;width:44%;transform:rotate(4deg);z-index:2}
+.stage .pb-desk .browser .bar{height:20px}.stage .pb-desk .browser .bar span{font-size:9px}
+.stage .ph.pb{position:absolute;right:3%;bottom:30%;width:20%;transform:rotate(5deg);z-index:2}
+.stage .ph.pc{position:absolute;right:-1%;bottom:0;width:20%;transform:rotate(9deg);z-index:3}
+.scroll{position:absolute;right:clamp(16px,4vw,40px);bottom:28px;display:grid;justify-items:center;gap:8px;font:500 10px var(--mono);letter-spacing:.2em;color:var(--gold)}
+.scroll i{width:1px;height:42px;background:linear-gradient(var(--gold),transparent)}
+
+/* device frames */
+.browser{border-radius:10px;overflow:hidden;background:#0f0f11;box-shadow:0 0 0 1px rgba(255,255,255,.09),0 40px 80px -30px rgba(0,0,0,.9)}
+.browser .bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#1a1a1d;border-bottom:1px solid rgba(255,255,255,.06)}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:#3d3d43;flex:none}
+.browser .bar span{margin-left:8px;font:11px var(--mono);color:#8b8b92;background:#111113;padding:2px 10px;border-radius:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.browser img{width:100%;height:auto}
+.ph{padding:5px;border-radius:26px;background:#080809;box-shadow:0 0 0 1px rgba(255,255,255,.12),inset 0 0 0 1px rgba(255,255,255,.05),0 30px 60px -20px rgba(0,0,0,.95)}
+.ph .scr{border-radius:21px;overflow:hidden;background:#fff}
+.ph img{width:100%;height:auto}
+.tab{padding:9px;border-radius:22px;background:#080809;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 30px 60px -20px rgba(0,0,0,.95)}
+.tab .scr{border-radius:13px;overflow:hidden}
+.tab img{width:100%;height:auto}
+
+/* sections */
+section{padding-block:clamp(72px,10vw,130px) 0;scroll-margin-top:68px}
+.sh{display:flex;align-items:center;gap:18px;margin-bottom:clamp(32px,4vw,52px)}
+.sh .num{font:500 12px var(--mono);color:var(--gold);align-self:flex-start;margin-top:14px}
+.sh h2{font:400 clamp(38px,5vw,64px)/1 var(--serif);margin:0;letter-spacing:-.01em;white-space:nowrap}
+.sh h2 em{color:var(--gold)}
+.sh::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent);margin-top:10px}
+.intro{color:var(--body);max-width:62ch;margin:-18px 0 36px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sk{border:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--bg2));border-radius:10px;padding:24px;display:grid;gap:12px;align-content:start;transition:border-color .25s,transform .25s}
+.sk:hover{border-color:#3b3830;transform:translateY(-2px)}
+.sk .n{font:500 11px var(--mono);color:var(--gold)}
+.sk h3{margin:0;font:400 23px/1.15 var(--serif)}
+.sk p{margin:0;color:var(--body);font-size:14.5px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font:500 11.5px var(--mono);padding:5px 9px;border-radius:4px;border:1px solid #3a3426;color:#d9c18c;background:rgba(201,168,100,.05)}
+
+/* experience */
+.tl{border-top:1px solid var(--line)}
+.job{display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(20px,4vw,56px);padding-block:30px;border-bottom:1px solid var(--line)}
+.job .when{font:500 12.5px var(--mono);color:var(--gold);letter-spacing:.04em}
+.job .when span{display:block;color:var(--body);font:500 14px var(--sans);letter-spacing:0;margin-top:6px}
+.job .when .cur{display:inline-flex;align-items:center;gap:6px;color:var(--ok);font:500 11px var(--mono);margin-top:10px}
+.job .when .cur::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.job h3{margin:0 0 10px;font:400 26px/1.15 var(--serif)}
+.job ul{margin:0 0 16px;padding-left:18px;color:var(--body);display:grid;gap:7px;font-size:15px;max-width:72ch}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.pcard{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden;display:grid;grid-template-rows:auto 1fr;transition:border-color .3s,transform .3s}
+.pcard:hover{border-color:#3d3a31;transform:translateY(-3px)}
+.poster{position:relative;height:330px;overflow:hidden;cursor:zoom-in;border:0;padding:0;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;font:inherit}
+.poster .ttl{position:relative;z-index:2;padding:26px 16px 0;display:grid;gap:4px;justify-items:center}
+.poster .ttl b{font:700 30px/1 var(--sans);letter-spacing:-.02em}
+.poster .ttl span{font-size:14.5px;opacity:.85}
+.poster .devs{position:absolute;inset:auto 0 0 0;height:218px;display:flex;justify-content:center;align-items:flex-start;gap:14px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.pcard:hover .poster .devs{transform:translateY(-10px)}
+.poster .devs .ph{width:118px;flex:none}
+.poster .devs .ph:nth-child(2){width:132px;margin-top:-18px}
+.poster .devs .browser{width:78%}
+.poster .open{position:absolute;right:14px;top:14px;z-index:3;font:500 11px var(--mono);letter-spacing:.08em;padding:6px 10px;border-radius:99px;background:rgba(0,0,0,.45);color:#fff;backdrop-filter:blur(6px);opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s}
+.poster.static{cursor:default}
+.tiles{display:flex;gap:12px;justify-content:center;align-items:flex-start;width:100%}
+.tile{width:30%;max-width:150px;border-radius:12px;overflow:hidden;box-shadow:0 20px 40px -14px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.15)}
+.tile:nth-child(2){margin-top:-16px}
+.tile img{width:100%;height:auto}
+.pcard:hover .open,.poster:focus-visible .open{opacity:1;transform:none}
+.pbody{padding:24px 26px 26px;display:grid;gap:12px;align-content:start;border-top:1px solid var(--line)}
+.pbody .cat{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px}
+.pbody .cat::before{content:"";width:18px;height:1px;background:var(--gold)}
+.pbody h3{margin:0;font:400 30px/1.05 var(--serif)}
+.pbody p{margin:0;color:var(--body);font-size:15px}
+.pbody .role{font-size:14px;color:var(--dim)}
+.pbody .role b{color:var(--ink);font-weight:600}
+.plinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.plinks a,.plinks button{display:inline-flex;align-items:center;gap:7px;font:500 12px var(--mono);letter-spacing:.04em;padding:8px 12px;border-radius:5px;border:1px solid var(--line2);background:transparent;text-decoration:none;cursor:pointer;transition:border-color .2s,color .2s;color:var(--ink)}
+.plinks a:hover,.plinks button:hover{border-color:var(--gold);color:var(--gold2)}
+.plinks .primary{border-color:#4a412c;color:var(--gold2)}
+.live{display:inline-flex;align-items:center;gap:6px;color:var(--ok);font:500 11px var(--mono);letter-spacing:.06em}
+.live::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px rgba(95,207,143,.18)}
+.pcard.feature{grid-column:1/-1;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:none}
+.pcard.feature .poster{height:auto;min-height:420px}
+.pcard.feature .pbody{border-top:0;border-left:1px solid var(--line);align-content:center;padding:clamp(24px,3vw,40px)}
+.pcard.feature .devs{position:relative;inset:auto;height:auto;width:100%;margin-top:26px;padding:0 7%;flex:1}
+.pcard.feature .devs .browser{width:100%}
+.pcard.feature .pbody h3{font-size:clamp(34px,3.6vw,46px)}
+.duo{position:relative;display:block;width:100%;height:100%}
+.pcard.feature .duo .browser:first-child{width:76%}
+.pcard.feature .duo .browser:last-child{position:absolute;right:0;top:42%;width:58%;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 30px 60px -10px rgba(0,0,0,.9)}
+.pcard.flip .poster{order:2}
+.pcard.flip .pbody{border-left:0;border-right:1px solid var(--line)}
+.pcard.flip .devs{position:absolute;inset:auto 0 0 0;height:auto;margin:0;padding:0;flex:none}
+.pcard.flip .devs .ph{width:124px}.pcard.flip .devs .ph:nth-child(2){width:140px}
+.pcard.flip .poster{min-height:440px}
+.hl{margin:4px 0 2px;padding:0;list-style:none;display:grid;gap:8px;font-size:14.5px;color:var(--body)}
+.hl li{display:grid;grid-template-columns:16px 1fr;gap:6px}
+.hl li::before{content:"—";color:var(--gold)}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.about .big{font:400 clamp(26px,2.8vw,36px)/1.25 var(--serif);margin:0}
+.about .big em{color:var(--gold)}
+.about p{color:var(--body);margin:20px 0 0}
+.cards{display:grid;gap:10px}
+.info{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:16px 18px;display:grid;gap:3px}
+.info small{font:500 10.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.info b{font-weight:500}
+.info span{color:var(--dim);font-size:13.5px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,72px);align-items:start}
+.contact h3{font:400 clamp(40px,5vw,62px)/1.02 var(--serif);margin:0;letter-spacing:-.01em}
+.contact h3 em{color:var(--gold)}
+.contact .sub{color:var(--body);margin:20px 0 28px;max-width:44ch}
+.channel{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid var(--line);border-radius:8px;background:var(--card);padding:15px 18px;text-decoration:none;transition:border-color .2s}
+.channel+.channel{margin-top:10px}
+a.channel:hover,button.channel:hover{border-color:#4a412c}
+button.channel{width:100%;text-align:left;cursor:pointer}
+.channel div{display:grid;gap:2px;min-width:0}
+.channel small{font:500 10.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.channel b{font-weight:500;overflow-wrap:anywhere}
+.channel .go{font:500 11.5px var(--mono);color:var(--gold);white-space:nowrap}
+.channel .avail{color:var(--ok)}
+.formcard{border:1px solid var(--line);border-radius:12px;background:linear-gradient(180deg,var(--card2),var(--card));padding:clamp(22px,3vw,34px)}
+.formcard h4{margin:0 0 4px;font:400 26px var(--serif)}
+.formcard>p{margin:0 0 22px;color:var(--dim);font-size:14px}
+form{display:grid;gap:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:grid;gap:7px}
+.f label{font:500 10.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--body)}
+.f input,.f textarea,.f select{width:100%;background:#0e0e10;border:1px solid var(--line2);border-radius:6px;padding:12px 14px;font-size:15px;color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.f select option{background:#151517}
+.f textarea{min-height:130px;resize:vertical}
+.f input::placeholder,.f textarea::placeholder{color:#5c5a56}
+.f input:focus,.f textarea:focus,.f select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,100,.14)}
+.f [aria-invalid="true"]{border-color:var(--err);box-shadow:0 0 0 3px rgba(240,138,122,.1)}
+.f .err{font-size:12.5px;color:var(--err)}
+.f .err:empty{display:none}
+.send{width:100%}
+.spin{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.state{display:none;gap:10px;padding:8px 0}
+.state h4{margin:0;font:400 30px var(--serif)}
+.state p{margin:0;color:var(--body)}
+.fw[data-s="sent"] form,.fw[data-s="sent"]>p{display:none}
+.fw[data-s="sent"] .state.ok{display:grid}
+.fw[data-s="fail"] .state.bad{display:grid}
+.note{font-size:12px;color:var(--dim)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+[data-cv][hidden]{display:none!important}
+footer{margin-top:clamp(72px,10vw,120px);border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-block:24px 30px;font:500 12px var(--mono);color:var(--dim)}
+
+/* project dialog */
+.dlg{position:fixed;inset:0;z-index:80;background:rgba(6,6,7,.86);backdrop-filter:blur(8px);overflow-y:auto;padding:clamp(12px,3vw,40px) clamp(12px,3vw,32px)}
+.dlg[hidden]{display:none!important}
+.dlg-in{max-width:1180px;margin:0 auto;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.dlg-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;padding:clamp(20px,3vw,34px);border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--bg2))}
+.dlg-head h3{margin:8px 0 10px;font:400 clamp(34px,4vw,48px)/1 var(--serif)}
+.dlg-head p{margin:0;color:var(--body);max-width:72ch}
+.dlg-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.dlg-meta div{display:grid;gap:4px;align-content:start;font-size:14px;color:var(--body)}
+.dlg-meta small{font:500 10.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.dlg-close{align-self:start;width:42px;height:42px;border-radius:10px;border:1px solid var(--line2);background:var(--card);cursor:pointer;font-size:20px;color:var(--ink)}
+.dlg-body{padding:clamp(20px,3vw,34px);display:grid;gap:36px}
+.grp h4{margin:0 0 16px;font:500 11.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+.grp h4::after{content:"";flex:1;height:1px;background:var(--line)}
+.grid-desk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid-ph{display:flex;gap:18px;overflow-x:auto;padding:6px 2px 14px;scroll-snap-type:x proximity}
+.shot{margin:0;display:grid;gap:9px;align-content:start;scroll-snap-align:start}
+.shot button{all:unset;cursor:zoom-in;display:block;border-radius:12px;transition:transform .3s}
+.shot button:hover{transform:translateY(-3px)}
+.shot button:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.shot figcaption{font-size:13px;color:var(--dim);text-align:center}
+.grid-ph .shot .ph{height:440px;width:auto}
+.grid-ph .shot .ph .scr{height:100%}
+.grid-ph .shot .ph img{height:100%;width:auto;max-width:none}
+.grid-tab{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}
+.grid-tab .shot{flex:1 1 300px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(4,4,5,.95);display:grid;grid-template-rows:minmax(0,1fr) auto;gap:12px;padding:20px}
+.lb[hidden]{display:none!important}
+.lb-stage{display:grid;place-items:center;min-height:0}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+.lb-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font:500 12.5px var(--mono);color:var(--body)}
+.lb-bar div{display:flex;gap:8px}
+.lb button{border:1px solid var(--line2);background:var(--card);border-radius:6px;padding:9px 14px;cursor:pointer;color:var(--ink);font:500 12.5px var(--mono)}
+
+@media (max-width:1020px){
+  .links{display:none;position:absolute;top:68px;left:12px;right:12px;flex-direction:column;border-radius:12px;background:#141416;padding:8px}
+  .links.open{display:flex}
+  .menu{display:grid}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .stage{justify-self:center;max-width:560px}
+  .skills{grid-template-columns:1fr 1fr}
+  .pcard.feature{grid-template-columns:1fr}
+  .pcard.feature .pbody,.pcard.flip .pbody{border-left:0;border-right:0;border-top:1px solid var(--line)}
+  .pcard.flip .poster{order:0}
+  .pcard.feature .poster{min-height:0;height:380px}
+  .about,.contact{grid-template-columns:1fr}
+  .scroll{display:none}
+}
+@media (max-width:760px){
+  .socials .icon-btn:not(.menu){display:none}
+  .stage .ph.pc{right:0}
+  .projects{grid-template-columns:1fr}
+  .skills{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:10px}
+  .row{grid-template-columns:1fr}
+  .sh h2{white-space:normal}
+  .dlg-meta{grid-template-columns:1fr}
+  .grid-desk{grid-template-columns:1fr}
+  .grid-ph .shot .ph{height:380px}
+  .poster{height:300px}
+  .pcard.feature .poster{height:300px}
+  .poster .devs .ph{width:100px}.poster .devs .ph:nth-child(2){width:112px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#home"><b>Yasmeen Gad</b><span>FLUTTER DEVELOPER</span></a>
+    <nav class="links" id="links" aria-label="Sections">
+      <a href="#home" class="on">Home</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="socials">
+      <a class="icon-btn" href="https://github.com/YasmeenGad" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2.5m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/yasmin-gad-252316287" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></a>
+      <a class="icon-btn" href="#contact" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+      <button class="icon-btn menu" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="links"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap" id="home" style="position:relative">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">Flutter Developer · Giza, Egypt</span>
+        <h1>Building <em>cross-platform</em> Flutter apps.</h1>
+        <p class="lead">I'm Yasmeen Gad, a Flutter developer at <b>MIMOCODES</b>, shipping a multi-flavor streaming product to Android TV, Windows, Linux and macOS. I build with Clean Architecture, Riverpod and BLoC, and I care about code that is easy for a team to grow.</p>
+        <div class="ctas">
+          <a class="btn gold" href="#contact">Get in touch</a>
+          <a class="btn" href="#projects">View projects</a>
+          <a class="btn" href="Yasmeen-Gad-CV.pdf" download data-cv hidden><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download CV</a>
+        </div>
+        <div class="facts"><div><b>2+</b><span>Years of Flutter</span></div><div><b>4</b><span>Production platforms</span></div><div><b>3</b><span>Engineering roles</span></div></div>
+      </div>
+      <div class="stage" aria-hidden="true" id="heroStage"></div>
+    </div>
+    <div class="scroll"><i></i>SCROLL</div>
+  </div>
+
+  <section id="skills"><div class="wrap">
+    <div class="sh"><span class="num">01</span><h2>Skills <em>&amp; Toolkit</em></h2></div>
+    <p class="intro">Flutter developer focused on production apps that run on more than one kind of screen: phones, desktop windows and the TV. Here is how that work groups in practice.</p>
+    <div class="skills" id="skillsGrid"></div>
+  </div></section>
+
+  <section id="experience"><div class="wrap">
+    <div class="sh"><span class="num">02</span><h2>Career <em>Timeline</em></h2></div>
+    <div class="tl" id="jobs"></div>
+  </div></section>
+
+  <section id="projects"><div class="wrap">
+    <div class="sh"><span class="num">03</span><h2>Selected <em>Work</em></h2></div>
+    <p class="intro">Real screens from each project. Open Maskany, my graduation project, to browse every screen at full size.</p>
+    <div class="projects" id="projGrid"></div>
+  </div></section>
+
+  <section id="about"><div class="wrap">
+    <div class="sh"><span class="num">04</span><h2>About <em>Me</em></h2></div>
+    <div class="about">
+      <div>
+        <p class="big">I started in mobile, then moved to products where one codebase has to feel right on a phone, a desktop window and a <em>TV across the room</em>.</p>
+        <p>I enjoy the problems that come with that: focus and D-pad navigation, adaptive layouts, media playback, and keeping several branded apps on one shared codebase. I like owning a feature from the API to the release, and working in teams that review each other's code.</p>
+      </div>
+      <div class="cards">
+        <div class="info"><small>Education</small><b>B.Sc. Computers &amp; Artificial Intelligence</b><span>Helwan University · 2025</span></div>
+        <div class="info"><small>Graduation project</small><b>Maskany, university housing platform</b><span>Now live at Helwan University</span></div>
+        <div class="info"><small>Languages</small><b>Arabic · English</b><span>Native · Fluent</span></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="contact"><div class="wrap">
+    <div class="sh"><span class="num">05</span><h2>Let's <em>Talk</em></h2></div>
+    <div class="contact">
+      <div>
+        <h3>Let's build something <em>great</em> together.</h3>
+        <p class="sub">Open to mid-level Flutter roles, remote or on-site, and selected freelance projects. Tell me what you're building, and I'll reply within two working days.</p>
+        <button class="channel" type="button" data-copy="yasmeengad36@gmail.com"><div><small>Email</small><b>yasmeengad36@gmail.com</b></div><span class="go" data-label>Copy</span></button>
+        <a class="channel" href="https://www.linkedin.com/in/yasmin-gad-252316287" target="_blank" rel="noopener"><div><small>LinkedIn</small><b>in/yasmin-gad</b></div><span class="go">Open ↗</span></a>
+        <a class="channel" href="https://github.com/YasmeenGad" target="_blank" rel="noopener"><div><small>GitHub</small><b>github.com/YasmeenGad</b></div><span class="go">Open ↗</span></a>
+        <div class="channel"><div><small>Location</small><b>Giza, Egypt</b></div></div>
+        <div class="channel"><div><small>Status</small><b class="avail">● Available for new roles</b></div></div>
+      </div>
+      <div class="formcard fw" data-s="idle">
+        <h4>Send a message</h4>
+        <p>I read every message and reply within two working days.</p>
+        <form novalidate id="cform">
+          <div class="row">
+            <div class="f"><label for="cn">Name</label><input id="cn" name="name" autocomplete="name" placeholder="Your name" aria-describedby="cn-e"><span class="err" id="cn-e" aria-live="polite"></span></div>
+            <div class="f"><label for="ce">Email</label><input id="ce" name="email" type="email" autocomplete="email" placeholder="you@company.com" aria-describedby="ce-e"><span class="err" id="ce-e" aria-live="polite"></span></div>
+          </div>
+          <div class="f"><label for="cs">Subject</label><select id="cs" name="subject"><option>Full-time role</option><option>Freelance project</option><option>Collaboration</option><option>Something else</option></select></div>
+          <div class="f"><label for="cm">Message</label><textarea id="cm" name="message" placeholder="The role or project, the platforms involved and your timeline." aria-describedby="cm-e"></textarea><span class="err" id="cm-e" aria-live="polite"></span></div>
+          <button class="btn gold send" type="submit"><span data-lbl>Send message</span></button>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <span class="note" id="formNote"></span>
+        </form>
+        <div class="state ok" role="status" tabindex="-1"><h4 data-okt>Message sent.</h4><p data-thanks>Thank you. I'll reply within two working days.</p><button class="btn" type="button" data-again style="justify-self:start;margin-top:8px">Send another</button></div>
+        <div class="state bad" role="alert"><h4>That didn't go through.</h4><p>Please try again, or email me directly at yasmeengad36@gmail.com.</p></div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Yasmeen Gad. All rights reserved.</span><span>Flutter Developer · Mobile, Desktop &amp; TV</span></div></footer>
+
+<div class="dlg" id="dlg" hidden role="dialog" aria-modal="true" aria-labelledby="dlgTitle"><div class="dlg-in" id="dlgIn"></div></div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <div class="lb-stage"><img id="lbImg" alt=""></div>
+  <div class="lb-bar"><span id="lbCap"></span><div><button id="lbPrev" type="button">‹ Prev</button><button id="lbNext" type="button">Next ›</button><button id="lbClose" type="button">Close</button></div></div>
+</div>
+
+<script>
+const IMG={"mk_home": "assets/img/mk_home.webp", "mk_hnu": "assets/img/mk_hnu.webp", "mk_about": "assets/img/mk_about.webp", "mk_info": "assets/img/mk_info.webp", "mk_accepted": "assets/img/mk_accepted.webp", "mk_rejected": "assets/img/mk_rejected.webp", "mk_apply": "assets/img/mk_apply.webp", "mk_account": "assets/img/mk_account.webp", "mk_login": "assets/img/mk_login.webp", "mk_student": "assets/img/mk_student.webp", "mk_edit": "assets/img/mk_edit.webp", "mk_dash": "assets/img/mk_dash.webp", "mk_buildings": "assets/img/mk_buildings.webp", "mk_schedule": "assets/img/mk_schedule.webp", "mk_meals": "assets/img/mk_meals.webp", "mk_guides": "assets/img/mk_guides.webp", "db_desk": "assets/img/db_desk.webp", "db_tab": "assets/img/db_tab.webp", "db_tabp": "assets/img/db_tabp.webp", "db_mob": "assets/img/db_mob.webp", "fl_accepted": "assets/img/fl_accepted.webp", "fl_apply": "assets/img/fl_apply.webp", "fl_arrived": "assets/img/fl_arrived.webp", "fl_ar_login": "assets/img/fl_ar_login.webp", "fl_ar_profile": "assets/img/fl_ar_profile.webp", "fl_delivered": "assets/img/fl_delivered.webp", "fl_history": "assets/img/fl_history.webp", "fl_login": "assets/img/fl_login.webp", "fl_map": "assets/img/fl_map.webp", "fl_orderpay": "assets/img/fl_orderpay.webp", "fl_profile": "assets/img/fl_profile.webp", "fl_requests": "assets/img/fl_requests.webp", "fl_track": "assets/img/fl_track.webp", "fl_verify": "assets/img/fl_verify.webp", "fl_welcome": "assets/img/fl_welcome.webp", "qz_languages": "assets/img/qz_languages.webp", "qz_login": "assets/img/qz_login.webp", "qz_signup": "assets/img/qz_signup.webp", "fit_onb1": "assets/img/fit_onb1.webp", "fit_login": "assets/img/fit_login.webp", "fit_goal": "assets/img/fit_goal.webp", "fs_categories": "assets/img/fs_categories.webp", "fs_cart": "assets/img/fs_cart.webp", "fs_notify": "assets/img/fs_notify.webp", "photo": "assets/img/photo.webp"};
+const IMGSIZE={"mk_home": [1268, 662], "mk_hnu": [1268, 662], "mk_about": [1268, 662], "mk_info": [1268, 662], "mk_accepted": [1268, 662], "mk_rejected": [1268, 662], "mk_apply": [1268, 662], "mk_account": [1268, 662], "mk_login": [1268, 662], "mk_student": [1268, 662], "mk_edit": [1268, 662], "mk_dash": [1268, 662], "mk_buildings": [1268, 662], "mk_schedule": [1268, 662], "mk_meals": [1268, 662], "mk_guides": [1268, 662], "db_desk": [1920, 1200], "db_tab": [1400, 1050], "db_tabp": [1000, 1439], "db_mob": [820, 1821], "fl_accepted": [530, 1122], "fl_apply": [560, 1188], "fl_arrived": [412, 900], "fl_ar_login": [534, 1136], "fl_ar_profile": [534, 1136], "fl_delivered": [530, 1122], "fl_history": [534, 1152], "fl_login": [522, 1132], "fl_map": [570, 1158], "fl_orderpay": [534, 1152], "fl_profile": [534, 1136], "fl_requests": [522, 1132], "fl_track": [406, 878], "fl_verify": [522, 1132], "fl_welcome": [562, 1188], "qz_languages": [720, 1600], "qz_login": [720, 1600], "qz_signup": [720, 1600], "fit_onb1": [720, 1600], "fit_login": [720, 1600], "fit_goal": [720, 1600], "fs_categories": [678, 1357], "fs_cart": [678, 1357], "fs_notify": [678, 1357], "photo": [900, 900]};
+const CONTACT = { email: 'yasmeengad36@gmail.com', web3formsKey: '', cv: '' };
+const SKILLS = [
+  ['Cross-platform Flutter','One codebase that feels native on phones, desktop windows and Android TV.',['Flutter & Dart','Android TV','Windows · Linux · macOS','Responsive & adaptive UI','Localization']],
+  ['Architecture','Layered, feature-first code with clear boundaries that survives team growth.',['Clean Architecture','Feature-first modules','SOLID','Multi-flavor builds','White-label apps']],
+  ['State & DI','Predictable state and testable dependencies across features.',['Riverpod','BLoC · Cubit','Provider','GetIt','injectable']],
+  ['APIs & data','Networking, persistence and real-time data designed for real backends.',['REST · Dio','Retrofit','Firebase','Hive · Isar','Caching']],
+  ['TV, media & UX','Remote-first navigation and reliable playback for streaming products.',['D-pad & focus management','Media streaming','Live TV · VOD','Fire TV','Google Maps']],
+  ['Quality & delivery','From pull request to installer, with tests and reviews along the way.',['Unit testing · bloc_test','Code review','Git flow · PRs','GitHub Actions','Releases & installers']]
+];
+const JOBS = [
+  ['Mar 2026 – Present','MIMOCODES',true,'Flutter Developer',['Build a multi-flavor streaming product with Clean Architecture, feature-first modules, Riverpod and dependency injection.','Ship to Android TV, Windows, Linux and macOS, owning TV navigation, D-pad and keyboard focus and platform-specific behavior.','Implement Live TV, movies, series, replay, favorites, playlists, caching and Fire TV playback optimizations.','Manage production releases, installers, flavors and environment configuration.'],['Flutter','Riverpod','Android TV','Desktop','Flavors']],
+  ['Sep 2025 – Mar 2026','MasteryHub',false,'Flutter Developer',['Built scalable apps with Clean Architecture, Bloc and Provider.','Integrated Google Maps, QR scanning, identity verification and push notifications.','Consumed secure REST APIs with Dio and GetIt for clean, testable code.'],['Flutter','Bloc','Dio','Google Maps']],
+  ['Oct 2024 – Apr 2025','Elevate',false,'Flutter Developer Intern',['Built Android and iOS apps with Clean Architecture and BLoC/Cubit.','Integrated REST APIs, wrote unit tests and took part in code reviews in Agile sprints.'],['Flutter','BLoC','Unit tests','Agile']]
+];
+const PROJECTS = [
+  { id:'maskany', feature:true, gallery:true, name:'Maskany', cat:'University housing platform', brand:'#13203b', brand2:'#24375f', ink:'#fff', tagline:'منصة إدارة المدن الجامعية · جامعة حلوان', titleAr:'مسكني', live:'Live at Helwan University',
+    desc:'A housing system for Helwan University. Students apply online through a five-step form and check their acceptance; staff rank applicants, manage buildings and rooms, schedule meals and publish guidelines.',
+    role:'Backend developer and top committer (108 of 187 commits): student registration, admission requests and applicant ranking, search, and media uploads for guidelines.',
+    team:'Team of 6 · supervised by Dr. Safaa Magdy · 2025', stack:['Spring Boot 3','Spring Security · JWT','MySQL · JPA','Angular','Apache POI'],
+    hl:['Student portal: application, acceptance check and editing an application','Admin panel: statistics, buildings and rooms, dates, meals and guidelines','Excel import and export of student lists'],
+    links:[['Live system','https://eservices.helwan.edu.eg/modon/'],['GitHub','https://github.com/YasmeenGad/Maskany']],
+    poster:{type:'desk2',imgs:['mk_home','mk_student']},
+    groups:[['Student portal','desk',[['mk_home','Landing page'],['mk_hnu','Helwan National University landing'],['mk_about','About the housing service'],['mk_info','Application dates and guidelines'],['mk_accepted','Acceptance check: accepted'],['mk_rejected','Acceptance check: not found'],['mk_apply','Application form: personal details'],['mk_account','Application form: create account'],['mk_login','Sign in'],['mk_student','Student home'],['mk_edit','Editing an application']]],
+            ['Admin panel','desk',[['mk_dash','Dashboard with application statistics'],['mk_buildings','Buildings and rooms'],['mk_schedule','Managing application dates'],['mk_meals','Meals management'],['mk_guides','Guidelines editor']]]] },
+  { id:'flowery', name:'Flowery Rider', cat:'Delivery app for drivers', brand:'#c2185b', brand2:'#e91e63', ink:'#fff', tagline:'Accept, pick up and deliver: one flow for drivers',
+    desc:'The driver side of a flower-delivery service. Drivers apply, accept orders and move each delivery from pickup to the customer’s door, with live tracking on the map. Available in English and Arabic.',
+    role:'Project setup, authentication and password recovery. Built the pending-orders feature across data, domain and presentation layers with unit tests, plus driver location updates on the map.',
+    team:'Team of 3 · 2025', stack:['Flutter','BLoC','injectable','Retrofit','Firebase','Google Maps','bloc_test'],
+    links:[['GitHub','https://github.com/YasmeenGad/flowery-delivery'],['Demo video','https://youtu.be/ViD-1IaKXkQ']],
+    poster:{type:'ph',imgs:['fl_requests','fl_accepted','fl_track']},
+    groups:[['Onboarding','ph',[['fl_welcome','Welcome'],['fl_apply','Driver application'],['fl_verify','Email verification'],['fl_login','Sign in']]],
+            ['Orders & delivery','ph',[['fl_requests','New order requests'],['fl_accepted','Order accepted'],['fl_map','Route to pickup'],['fl_track','Tracking the delivery'],['fl_arrived','Arrived notification'],['fl_delivered','Order delivered'],['fl_history','Order history'],['fl_orderpay','Order details and payment']]],
+            ['Profile & Arabic','ph',[['fl_profile','Driver profile'],['fl_ar_profile','Profile in Arabic'],['fl_ar_login','Sign in, in Arabic']]]] },
+  { id:'store', name:'Flowery Store', cat:'Flower e-commerce app', brand:'#9c1450', brand2:'#d81b60', ink:'#fff', tagline:'Browse, order and get notified',
+    desc:'The customer side of the Flowery platform: browse flowers and gifts by category and occasion, search, add to cart, check out and follow orders, with push notifications.',
+    role:'Built product search end to end (data source, view model, search view and home search bar), foreground push notifications, and the map and saved-address screens.',
+    team:'Team of 5 · 2025', stack:['Flutter','BLoC','injectable','Retrofit','Firebase Messaging','Google Maps','bloc_test'],
+    links:[['GitHub','https://github.com/YasmeenGad/flowery_store'],['Demo video','https://youtu.be/bP0BNKABzG8']],
+    poster:{type:'tiles',imgs:['fs_categories','fs_cart','fs_notify']},
+    groups:[] },
+  { id:'fitness', name:'Super Fitness', cat:'Fitness & AI coaching app', brand:'#2a1208', brand2:'#c2410c', ink:'#fff', tagline:'Workouts, meals and an AI coach',
+    desc:'A fitness app with guided onboarding, a six-step profile setup, workouts by muscle group, meal ideas and a Smart Coach chat powered by Gemini.',
+    role:'Top contributor (85 commits): forget password, OTP verification and reset password; the goal and activity steps of registration; the home screen with popular training and random muscles; meal categories; and saving Smart Coach chats locally.',
+    team:'Team of 4 · 2025', stack:['Flutter','BLoC','injectable','Retrofit','Gemini API','Hive','bloc_test'],
+    links:[['GitHub','https://github.com/YasmeenGad/fitness_app']],
+    poster:{type:'ph',imgs:['fit_onb1','fit_login','fit_goal']},
+    groups:[] },
+  { id:'dashboard', name:'Responsive Dashboard', cat:'Adaptive Flutter UI', brand:'#1f7fd1', brand2:'#4db5f0', ink:'#fff', tagline:'One codebase: desktop, tablet and mobile',
+    desc:'A finance dashboard that adapts one Flutter codebase to three layouts: a three-column desktop view, a two-column tablet view and a mobile view with a drawer. Built after the Mastering Flutter: Responsive & Adaptive UI course.',
+    role:'Built solo: layout breakpoints, adaptive widgets, the expenses cards, income chart with fl_chart, card carousel and transaction history.',
+    team:'Solo · 2024', stack:['Flutter','Responsive layouts','fl_chart','expandable_page_view','flutter_svg'],
+    links:[['GitHub','https://github.com/YasmeenGad/dashboard']],
+    poster:{type:'dash'},
+    groups:[['Desktop','desk',[['db_desk','Desktop: three-column layout']]],['Tablet','tab',[['db_tab','Tablet landscape'],['db_tabp','Tablet portrait']]],['Mobile','ph',[['db_mob','Mobile layout with drawer']]]] },
+  { id:'quizzy', wide:true, name:'Quizzy', cat:'Online exam app', brand:'#0b3a8c', brand2:'#1a56c4', ink:'#fff', tagline:'Timed exams, instant results',
+    desc:'Timed exams by subject with instant scoring and answer review. Results are cached locally, and the app ships in five languages.',
+    role:'Main contributor, with 145 of 222 commits.',
+    team:'Team of 2 · 2025', stack:['Flutter','Provider · BLoC','Retrofit','injectable','Hive','Isar'],
+    links:[['GitHub','https://github.com/YasmeenGad/online_exam_app']],
+    poster:{type:'ph',imgs:['qz_languages','qz_login','qz_signup']},
+    groups:[['Screens','ph',[['qz_languages','Choose a language (5 locales)'],['qz_login','Sign in'],['qz_signup','Sign up']]]] }
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const img = (k, alt, eager) => `<img src="${IMG[k]}" alt="${esc(alt)}" width="${IMGSIZE[k][0]}" height="${IMGSIZE[k][1]}" decoding="async">`;
+const browser = (k, alt, url, eager) => `<div class="browser"><div class="bar"><i></i><i></i><i></i><span>${url}</span></div>${img(k, alt, eager)}</div>`;
+const phone = (k, alt, cls='', eager) => `<div class="ph ${cls}"><div class="scr">${img(k, alt, eager)}</div></div>`;
+const tablet = (k, alt) => `<div class="tab"><div class="scr">${img(k, alt)}</div></div>`;
+const URL = { maskany:'eservices.helwan.edu.eg/modon', dashboard:'responsive-dashboard · Flutter web' };
+const ICONS = { GitHub:'<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2-6-2.5m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>' };
+
+document.getElementById('heroStage').innerHTML = IMG.photo
+  ? `<div class="portrait"><img src="${IMG.photo}" alt="Yasmeen Gad" width="${IMGSIZE.photo[0]}" height="${IMGSIZE.photo[1]}"></div>` + phone('fit_onb1','Super Fitness onboarding','pa') + phone('fit_login','Super Fitness login','pb') + phone('fit_goal','Super Fitness goal step','pc')
+  : browser('mk_dash','Maskany admin dashboard',URL.maskany,true) +
+  phone('fl_accepted','Flowery Rider order','a',true) + phone('db_mob','Responsive dashboard on mobile','b',true) + phone('qz_login','Quizzy sign in','c',true);
+
+document.getElementById('skillsGrid').innerHTML = SKILLS.map(([t,d,tags],i)=>`<article class="sk"><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${t}</h3><p>${d}</p><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></article>`).join('');
+document.getElementById('jobs').innerHTML = JOBS.map(([when,org,cur,role,pts,tags])=>`<article class="job"><div class="when">${when}<span>${org}</span>${cur?'<b class="cur">CURRENT</b>':''}</div><div><h3>${role}</h3><ul>${pts.map(p=>`<li>${p}</li>`).join('')}</ul><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></div></article>`).join('');
+
+function poster(p) {
+  let devs = '';
+  if (p.poster.type === 'desk2') devs = `<span class="duo">${browser(p.poster.imgs[0], `${p.name} landing page`, URL[p.id])}${browser(p.poster.imgs[1], `${p.name} student home`, URL[p.id])}</span>`;
+  else if (p.poster.type === 'tiles') devs = `<span class="tiles">${p.poster.imgs.map((k,i)=>`<span class="tile">${img(k, `${p.name} store screen ${i+1}`)}</span>`).join('')}</span>`;
+  else if (p.poster.type === 'ph') devs = p.poster.imgs.map((k,i) => phone(k, `${p.name} screen ${i+1}`)).join('');
+  else devs = `<div style="display:flex;align-items:flex-start;gap:14px;justify-content:center;width:100%"><div class="browser" style="width:62%"><div class="bar"><i></i><i></i><i></i><span>${URL.dashboard}</span></div>${img('db_desk','Responsive dashboard on desktop')}</div>${phone('db_mob','Responsive dashboard on mobile','')}</div>`;
+  const g = p.gallery, tag = g ? 'button' : 'div';
+  return `<${tag} class="poster ${g ? '' : 'static'}" ${g ? `type="button" data-open="${p.id}" aria-label="Open ${esc(p.name)} screens"` : ''} style="background:radial-gradient(120% 90% at 50% 0%,${p.brand2},${p.brand} 70%);color:${p.ink}">
+    ${g ? '<span class="open">VIEW ALL SCREENS</span>' : ''}
+    <span class="ttl"><b ${p.titleAr?'dir="rtl"':''}>${p.titleAr||p.name}</b><span ${p.titleAr?'dir="rtl"':''}>${p.tagline}</span></span>
+    <span class="devs">${devs}</span></${tag}>`;
+}
+const count = p => p.groups.reduce((n,g)=>n+g[2].length,0);
+document.getElementById('projGrid').innerHTML = PROJECTS.map(p => `
+  <article class="pcard ${p.feature?'feature':''} ${p.wide?'feature flip':''}">
+    ${poster(p)}
+    <div class="pbody">
+      <span class="cat">${p.cat}</span>
+      ${p.live?`<span class="live">${p.live.toUpperCase()}</span>`:''}
+      <h3>${p.name}</h3>
+      <p>${esc(p.desc)}</p>
+      ${p.hl?`<ul class="hl">${p.hl.map(x=>`<li>${x}</li>`).join('')}</ul>`:''}
+      <p class="role"><b>My role:</b> ${esc(p.role)}</p>
+      <div class="tags">${p.stack.map(x=>`<span>${x}</span>`).join('')}</div>
+      <div class="plinks">${p.gallery ? `<button class="primary" type="button" data-open="${p.id}">View ${count(p)} screens</button>` : ''}${p.links.map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${ICONS[l]||''}${l} ↗</a>`).join('')}</div>
+    </div>
+  </article>`).join('');
+
+(() => {
+  const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const menuBtn = document.getElementById('menuBtn'), links = document.getElementById('links');
+  menuBtn.addEventListener('click', () => { const o = links.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); }));
+  const secs = ['home','skills','experience','projects','about','contact'].map(id => document.getElementById(id));
+  const spy = () => { const y = scrollY + 140; let cur = 'home'; secs.forEach(s => { if (s.offsetTop <= y) cur = s.id; }); links.querySelectorAll('a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur)); };
+  addEventListener('scroll', () => requestAnimationFrame(spy), { passive: true }); spy();
+
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
+    const l = b.querySelector('[data-label]'), done = t => { l.textContent = t; setTimeout(() => l.textContent = 'Copy', 1600); };
+    navigator.clipboard ? navigator.clipboard.writeText(b.dataset.copy).then(() => done('Copied ✓'), () => done('Select to copy')) : done('Select to copy');
+  }));
+
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+  let list = [], li = 0, ret = null;
+  const show = i => { li = (i + list.length) % list.length; const [k, cap] = list[li]; lbImg.src = IMG[k]; lbImg.alt = cap; lbCap.textContent = `${cap} · ${li + 1} / ${list.length}`; };
+  const openLb = (l, i, from) => { list = l; ret = from; show(i); lb.hidden = false; document.getElementById('lbClose').focus(); };
+  const closeLb = () => { lb.hidden = true; ret?.focus(); };
+  document.getElementById('lbPrev').onclick = () => show(li - 1);
+  document.getElementById('lbNext').onclick = () => show(li + 1);
+  document.getElementById('lbClose').onclick = closeLb;
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-stage')) closeLb(); });
+
+  const dlg = document.getElementById('dlg'), dlgIn = document.getElementById('dlgIn'); let dlgRet = null;
+  const shot = (k, cap, type, p) => {
+    const media = type === 'desk' ? browser(k, `${p.name}: ${cap}`, URL[p.id] || p.name) : type === 'tab' ? tablet(k, `${p.name}: ${cap}`) : phone(k, `${p.name}: ${cap}`);
+    return `<figure class="shot"><button type="button" data-k="${k}" aria-label="View full size: ${esc(cap)}">${media}</button><figcaption>${esc(cap)}</figcaption></figure>`;
+  };
+  function openProject(id, from) {
+    const p = PROJECTS.find(x => x.id === id); dlgRet = from;
+    const all = p.groups.flatMap(g => g[2].map(([k, c]) => [k, `${p.name} · ${c}`]));
+    dlgIn.innerHTML = `<div class="dlg-head"><div><span class="cat eyebrow">${p.cat}</span><h3 id="dlgTitle">${p.name}</h3><p>${esc(p.desc)}</p>
+        <div class="dlg-meta"><div><small>My role</small>${esc(p.role)}</div><div><small>Team</small>${p.team}</div><div><small>Stack</small>${p.stack.join(' · ')}</div></div>
+        <div class="plinks" style="margin-top:18px">${p.links.map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`).join('')}</div></div>
+        <button class="dlg-close" type="button" aria-label="Close">✕</button></div>
+      <div class="dlg-body">${p.groups.map(([title, type, items]) => `<div class="grp"><h4>${title} · ${items.length}</h4><div class="${type === 'desk' ? 'grid-desk' : type === 'tab' ? 'grid-tab' : 'grid-ph'}">${items.map(([k, c]) => shot(k, c, type, p)).join('')}</div></div>`).join('')}</div>`;
+    dlgIn.querySelector('.dlg-close').onclick = closeDlg;
+    dlgIn.querySelectorAll('[data-k]').forEach(b => b.addEventListener('click', () => openLb(all, all.findIndex(a => a[0] === b.dataset.k), b)));
+    dlg.hidden = false; document.body.style.overflow = 'hidden'; dlg.scrollTop = 0; dlgIn.querySelector('.dlg-close').focus();
+  }
+  function closeDlg() { dlg.hidden = true; document.body.style.overflow = ''; dlgRet?.focus(); }
+  dlg.addEventListener('click', e => { if (e.target === dlg) closeDlg(); });
+  document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => openProject(b.dataset.open, b)));
+  document.addEventListener('keydown', e => {
+    if (!lb.hidden) { if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowRight') show(li + 1); if (e.key === 'ArrowLeft') show(li - 1); return; }
+    if (!dlg.hidden && e.key === 'Escape') closeDlg();
+  });
+
+  const fw = document.querySelector('.fw'), form = document.getElementById('cform'), btn = form.querySelector('.send'), lbl = btn.querySelector('[data-lbl]');
+  const rules = { name: v => v.trim().length >= 2 || 'Please enter your name.', email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Please enter a valid email address.', message: v => v.trim().length >= 20 || 'Please write at least 20 characters.' };
+  const check = el => { const r = rules[el.name](el.value), ok = r === true, e = document.getElementById(el.getAttribute('aria-describedby')); el.setAttribute('aria-invalid', !ok); e.textContent = ok ? '' : r; return ok; };
+  const fields = [...form.querySelectorAll('[name="name"],[name="email"],[name="message"]')];
+  fields.forEach(el => { el.addEventListener('blur', () => el.value && check(el)); el.addEventListener('input', () => el.getAttribute('aria-invalid') === 'true' && check(el)); });
+  form.addEventListener('submit', e => {
+    e.preventDefault(); const res = fields.map(check); const bad = fields[res.indexOf(false)]; if (bad) { bad.focus(); return; }
+    const data = { name: form.name.value.trim(), email: form.email.value.trim(), subject: form.subject.value, message: form.message.value.trim() };
+    const first = data.name.split(' ')[0];
+    if (!CONTACT.web3formsKey) {
+      const body = `${data.message}\n\n${data.name}\n${data.email}`;
+      location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(data.subject + ' · from ' + data.name)}&body=${encodeURIComponent(body)}`;
+      fw.querySelector('[data-okt]').textContent = 'Your email app is open.';
+      fw.querySelector('[data-thanks]').textContent = `Thanks, ${first}. Press send in your email app and I'll reply within two working days. If nothing opened, write to ${CONTACT.email}.`;
+      fw.dataset.s = 'sent'; fw.querySelector('.state.ok').focus(); return;
+    }
+    btn.disabled = true; lbl.textContent = 'Sending…'; btn.insertAdjacentHTML('afterbegin', '<span class="spin" aria-hidden="true"></span>');
+    const done = () => { btn.disabled = false; lbl.textContent = 'Send message'; btn.querySelector('.spin')?.remove(); };
+    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ access_key: CONTACT.web3formsKey, subject: `Portfolio: ${data.subject} · ${data.name}`, from_name: 'Portfolio contact form', botcheck: form.botcheck.checked, ...data }) })
+      .then(r => r.json()).then(r => { done(); if (!r.success) throw new Error(r.message);
+        fw.querySelector('[data-thanks]').textContent = `Thank you, ${first}. I'll reply within two working days.`;
+        fw.dataset.s = 'sent'; fw.querySelector('.state.ok').focus(); })
+      .catch(() => { done(); fw.dataset.s = 'fail'; });
+  });
+  fw.querySelector('[data-again]').onclick = () => { form.reset(); fw.dataset.s = 'idle'; form.name.focus(); };
+  document.getElementById('formNote').textContent = CONTACT.web3formsKey ? 'Sent securely through Web3Forms.' : 'Opens your email app with the message ready to send.';
+  if (CONTACT.cv) document.querySelectorAll('[data-cv]').forEach(a => { a.href = CONTACT.cv; a.hidden = false; });
+})();
+</script>
+
+</body>
+</html>
